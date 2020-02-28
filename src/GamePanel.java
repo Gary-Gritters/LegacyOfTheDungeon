@@ -3,6 +3,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**********************************************************
+ * This class is the actual code for creating the GUI panel
+ * 
+ * @author GG
+ * @version 1.0
+ **********************************************************/
+
 public class GamePanel extends JPanel {
     private JButton[][] board;
     private JButton undo;
@@ -85,7 +92,14 @@ public class GamePanel extends JPanel {
         firstTurnFlag = true;
 
     }
-
+    
+    /*****************************************************
+     * This method sets the color of a given tile to white.
+     * r is the row and c is the column.
+     * @param r 
+     * @param c
+     *****************************************************/
+    
     private void setBackGroundColor(int r, int c) {
             board[r][c].setBackground(Color.WHITE);
     }
