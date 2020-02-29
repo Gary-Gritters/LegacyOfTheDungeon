@@ -104,20 +104,23 @@ public class GamePanel extends JPanel {
             board[r][c].setBackground(Color.WHITE);
     }
 
-    /*
-     *For if someone wants to redo their turn
-     */
+    /**********************************************************************
+     * This class allows the user to undo an action. 
+     * It may not be needed for the final product but is useful for testing.
+     * @author GG
+     * @version 1.0
+     **********************************************************************/
+    
     private class undoListener implements ActionListener {
 
-        /*
+        /***********************************************
          * This method runs if the undo button is pushed.
          *
          * @param event if the undo button is pushed.
-         */
+         ***********************************************/
 
         public void actionPerformed(ActionEvent event) {
             if (undo == event.getSource()) {
-
                 //for stack please
       //          if (model.prevMoveExists()) {
                     // Undoes the previous move
@@ -128,12 +131,24 @@ public class GamePanel extends JPanel {
 
       //              displayBoard()
                 //}
-
             }
         }
     }
-
+    
+    /*****************************************
+     * This class opens up the character GUI.
+     * @author GG
+     * @version 1.0
+     *****************************************/
+    
     private class characterSheetListener implements ActionListener {
+    	
+    	/****************************************************
+    	 * This method runs if the Character button is pushed.
+    	 * 
+    	 * @param event if the Character button is pushed.
+    	 ****************************************************/
+    	
         public void actionPerformed(ActionEvent event){
             if (characterSheet == event.getSource()){
                 System.out.println("It worked!");
@@ -142,8 +157,20 @@ public class GamePanel extends JPanel {
     }
 
 
-
+    /**********************************
+     * This class opens up the map GUI.
+     * @author GG
+     * @version 1.0
+     *********************************/
+    
     private class mapSystemListener implements ActionListener {
+    	
+    	/**********************************************
+    	 * This method runs if the Map button is pushed.
+    	 * 
+    	 * @param event if the Map button is pushed
+    	 **********************************************/
+    	
         public void actionPerformed(ActionEvent event){
             if (mapSystem == event.getSource()){
                 JOptionPane.showInputDialog("Give me the cake.");
@@ -153,15 +180,20 @@ public class GamePanel extends JPanel {
         }
     }
 
-
+    /******************************************************
+     * This class checks for clicks on the main GUI buttons.
+     * @author GG
+     * @version 1.0
+     ******************************************************/
+    
     private class listener implements ActionListener {
 
-        /**
-         * This method checks for a mouse event and determines
-         * what to do for each event.
+        /***************************************************************
+         * This method checks for a mouse click on the main GUI buttons.
+         * It then determines which button was clicked and what to do.
          *
          * @param event the mouse event.
-         */
+         ***************************************************************/
 
         public void actionPerformed(ActionEvent event) {
 
