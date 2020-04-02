@@ -1,6 +1,6 @@
 public class Inventory {
 
-    Item[] myInventory = new Item[8];
+    private Item[] myInventory = new Item[8];
 
     public Inventory() {
         for(int i = 0; i < 8; i++) {
@@ -26,13 +26,21 @@ public class Inventory {
 
     public void addItem(Inventory i, Item thisOne){
         if(isFull(i)){
-            //handle this later
+            System.out.println("Sorry your inventory is already full");
         } else {
             for(int j = 0; j < 8; j++){
-                if(i.myInventory[j].getItemName() == ""){
-                    i.myInventory[j] = thisOne;
+                if(i.getMyInventory()[j].getItemName() == ""){
+                    i.getMyInventory()[j] = thisOne;
                     break;
                 }
+            }
+        }
+    }
+
+    public void dropItem(Inventory i, Item thisOne){
+        for(int j = 0; j < 8; j++){
+            if(i.getMyInventory()[j].getItemName() == thisOne.getItemName()){
+                i.getMyInventory()[j] = new Weapon();
             }
         }
     }
@@ -45,4 +53,5 @@ public class Inventory {
         }
         return true;
     }
+
 }
