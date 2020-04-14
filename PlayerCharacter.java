@@ -1,5 +1,5 @@
 package PlayerCharacter;
-
+import java.util.Random;
 /**********************************************************
  * This class will detail the basic framework of a character.
  * These attributes are common to all classes (though in the case
@@ -17,10 +17,11 @@ abstract public class PlayerCharacter {
     protected int magic;
     protected int level;
     protected int experience;
+    protected int nextLevel;
     protected int currency;
 
     public PlayerCharacter(String name, int str, int dex, int con, int mind,
-                     int hp, int mp, int lv, int exp, int gold) {
+                     int hp, int mp, int lv, int exp, int next, int gold) {
 
         charName = "" + name;
         strength = str;
@@ -31,20 +32,25 @@ abstract public class PlayerCharacter {
         magic = mp;
         level = lv;
         experience = exp;
+        nextLevel = next;
         currency = gold;
     }
 
-    public levelUp() {
+    public void levelUp() {
 
         level++;
         strength += 0;
         dexterity += 0;
         constitution += 0;
         intelligence += 0;
+        nextLevel += level * 1000;
         System.out.println("Please distribute remaining stat points");
+        if (experience >= nextLevel) {
+            levelUp();
+        }
     }
 
-    public abilityType() {
+    public void abilityType() {
 
         int requiredLevel;
         String abilityName;
