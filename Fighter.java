@@ -1,7 +1,28 @@
 package PlayerCharacter;
 
+/***************************************************
+ * This guy hits things really hard.  He also protects others
+ * from harm.
+ *
+ * @author Matt Hendrick
+ ***************************************************/
 public class Fighter extends PlayerCharacter {
 
+    /************************************************
+     * Initial stat chart for a level 1 fighter.
+     *
+     * @param name
+     * @param str
+     * @param dex
+     * @param con
+     * @param mind
+     * @param hp
+     * @param mp
+     * @param lv
+     * @param exp
+     * @param next
+     * @param gold
+     */
     private Fighter(String name, int str, int dex, int con, int mind,
                     int hp, int mp, int lv, int exp, int next, int gold) {
         super(name, str, dex, con, mind, hp, mp, lv, exp, next, gold);
@@ -19,6 +40,9 @@ public class Fighter extends PlayerCharacter {
         gold = 0;
     }
 
+    /*********************************************
+     * This is the growth chart for the fighter
+     *********************************************/
     public void levelUp() {
 
         level++;
@@ -60,6 +84,12 @@ public class Fighter extends PlayerCharacter {
         boolean isAvailable = true;
     }
 
+    /*********************************************
+     * This ability is meant to hit a target hard, but leave
+     * the fighter unable to act for a turn.  Strategically,
+     * it is meant to hit a threatening monster hard to get it
+     * out of battle ASAP.
+     ********************************************/
     public void focusStrike() {
         boolean isActive = true;
         int damage;
@@ -76,6 +106,10 @@ public class Fighter extends PlayerCharacter {
 
     }
 
+    /********************************************
+     * Raises defense at the cost of the opportunity to attack
+     * the next turn
+     ********************************************/
     public void shield() {
         int defense;
         int armorValue;
@@ -83,19 +117,21 @@ public class Fighter extends PlayerCharacter {
         defense = (constitution + armorValue) * 2;
     }
 
+    /********************************************
+     * Draw the enemies to the fighter.  This should have the
+     * effect of removing the priority from other characters, which
+     * would require an AI change if this is active.
+     ********************************************/
     public void taunt() {
         //Enemies that target a character with a melee attack attack this
         //character instead for one round
     }
 
+    /**********************************************
+     * Hits surrounding enemies for normal melee damage.
+     **********************************************/
     public void whirlwind() {
         //Target all surrounding enemies
     }
-
-
-
-
-
-
 
 }

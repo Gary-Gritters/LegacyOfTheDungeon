@@ -5,6 +5,8 @@ import java.util.Random;
  * These attributes are common to all classes (though in the case
  * of the fighter and rogue, magic will always be at 0), but will have
  * different growth rates and abilities depending upon the class.
+ *
+ * @author Matt Hendrick
  ***********************************************************/
 abstract public class PlayerCharacter {
 
@@ -20,6 +22,22 @@ abstract public class PlayerCharacter {
     protected int nextLevel;
     protected int currency;
 
+    /***********************************************
+     * Acts as the basic constructor for a character and will
+     * give the character's stats.
+     *
+     * @param name
+     * @param str
+     * @param dex
+     * @param con
+     * @param mind
+     * @param hp
+     * @param mp
+     * @param lv
+     * @param exp
+     * @param next
+     * @param gold
+     */
     public PlayerCharacter(String name, int str, int dex, int con, int mind,
                      int hp, int mp, int lv, int exp, int next, int gold) {
 
@@ -36,6 +54,12 @@ abstract public class PlayerCharacter {
         currency = gold;
     }
 
+    /**********************************************
+     * This is how the character will grow upon reaching a certain
+     * experience point threshold.  There is code that will level the
+     * character multiple times in the very rare event a character
+     * gains more than one level in a single battle.
+     ************************************************/
     public void levelUp() {
 
         level++;
@@ -57,7 +81,7 @@ abstract public class PlayerCharacter {
         int damage;
         int defense;
     }
-
+    
     public void setCharName(String name) {
         charName = name;
     }

@@ -2,11 +2,33 @@ package PlayerCharacter;
 
 import java.util.Random;
 
+/******************************************************
+ * This is the Mage class, which is used for casting offensive
+ * magic spells, and also contains a growth guide for leveling up
+ *
+ * @author Matt Hendrick
+ ******************************************************/
 public class Mage extends PlayerCharacter {
 
+    /*************************************************
+     * This is the initial statistics chart for the Mage
+     * upon character creation.
+     *
+     * @param name
+     * @param str
+     * @param dex
+     * @param con
+     * @param mind
+     * @param hp
+     * @param mp
+     * @param lv
+     * @param exp
+     * @param next
+     * @param gold
+     **************************************************/
     private Mage(String name, int str, int dex, int con, int mind,
-                    int hp, int mp, int lv, int exp, int gold) {
-        super(name, str, dex, con, mind, hp, mp, lv, exp, gold);
+                    int hp, int mp, int lv, int exp, int next, int gold) {
+        super(name, str, dex, con, mind, hp, mp, lv, exp, next, gold);
 
         name = "";
         str = 1;
@@ -17,10 +39,15 @@ public class Mage extends PlayerCharacter {
         mp = 6 + mind;
         lv = 1;
         exp = 0;
+        next = 1000;
         gold = 0;
 
     }
 
+    /****************************************************
+     * This is the level up chart that details how the mage grows
+     * every level.
+     ****************************************************/
     private levelUp() {
 
         level++;
@@ -53,6 +80,11 @@ public class Mage extends PlayerCharacter {
 
     }
 
+    /***********************************************
+     * Initial spell of the Mage so the character isn't completely
+     * useless at first level.  Will still have to be babysat by
+     * melee classes for the early levels.
+     ***********************************************/
     private void spark() {
         int damage;
         Random random = new Random();
@@ -65,6 +97,9 @@ public class Mage extends PlayerCharacter {
         }
     }
 
+    /**********************************************
+     * Essentially a more advanced version of Spark
+     **********************************************/
     private void bolt() {
         int damage;
         Random random = new Random();
@@ -77,6 +112,12 @@ public class Mage extends PlayerCharacter {
         }
     }
 
+    /***********************************************
+     * As the monsters have more HP, we need more powerful spells
+     * to keep the monsters in check.  This will target multiple
+     * monsters at once
+     *
+     *************************************************/
     private void fireball() {
         int damage;
         Random random = new Random();
@@ -90,11 +131,20 @@ public class Mage extends PlayerCharacter {
         //This targets multiple enemies
     }
 
+    /***********************************************
+     * The first status ailment spell we can cast on the monsters.
+     * This does have a chance to work on bosses, though they
+     * will have an additional chance to resist it.
+     ***********************************************/
     private void paralyze() {
         //This will set the target enemy to have their turn skipped
         //until condition is cured
     }
 
+    /**********************************************
+     * This will inflict a high amount of single target damage,
+     * but is also expensive to cast.
+     ***********************************************/
     private void doom() {
         int damage;
         Random random = new Random();
