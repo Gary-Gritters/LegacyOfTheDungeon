@@ -4,17 +4,20 @@ public class GamePiece implements IGamePiece{
     private int moveSpeed;
     private int health;
     private int range;
-    private boolean isAlly;
-    public GamePiece(int newMoveSpeed, int newRange, String callMeThis){
+    //NOTE! If is ally is 0, they are nothing. 1 is friendly, -1 is enemy
+    private int isAlly;
+    public GamePiece(int newMoveSpeed, int newRange, String callMeThis, int amFriendly){
         myName = callMeThis;
         moveSpeed = newMoveSpeed;
         range = newRange;
+        isAlly = amFriendly;
     }
 
     public GamePiece(){
         myName = "nullName";
         moveSpeed = 0;
         range = 0;
+        isAlly = 0;
     }
 
     public void setMoveSpeed(int setMoveSpeed){
@@ -29,6 +32,9 @@ public class GamePiece implements IGamePiece{
     }
     public int getRange(){
         return range;
+    }
+    public int getAlliance() {
+        return isAlly;
     }
 
     public void takeDamage(int damage){

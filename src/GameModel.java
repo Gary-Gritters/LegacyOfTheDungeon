@@ -10,8 +10,8 @@ public class GameModel {
             }
         }
     }
-    public void createPiece(int rowSpot, int colSpot, int moveSpeed, int attackRange, String myName){
-        myPieces[rowSpot][colSpot] = new GamePiece(moveSpeed, attackRange, myName);
+    public void createPiece(int rowSpot, int colSpot, int moveSpeed, int attackRange, String myName, int isAlly){
+        myPieces[rowSpot][colSpot] = new GamePiece(moveSpeed, attackRange, myName, isAlly);
     }
 
     public void removePiece(int rowSpot, int colSpot){
@@ -19,21 +19,26 @@ public class GameModel {
     }
 
     public boolean canMovePiece(int fromRow, int fromCol, int toRow, int toCol){
-        boolean test = false;
         GamePiece check = myPieces[fromRow][fromCol];
         int distanceRow = Math.abs(fromRow - toRow);
         int distanceCol = Math.abs(fromCol - toCol);
         if(check.getName() == "nullName" || fromRow == toRow && fromCol == toCol){
             return false;
         }
+        if(!myPieces[toRow][toCol].getName().equals("nullName")){
+            return false;
+        }
         if(distanceRow <= check.getMoveSpeed() && distanceCol <= check.getMoveSpeed()){
-            test = true;
             return true;
         }
         /*if((toRow - fromRow <= check.getMoveSpeed()) && (toCol - fromCol <= check.getMoveSpeed())){
             return true;
         }*/
         return false;
+    }
+
+    public int isAlly(int rowSpot, int colSpot){
+        return myPieces[rowSpot][colSpot].getAlliance();
     }
 
     public void movePiece(int fromRow, int fromCol, int toRow, int toCol){

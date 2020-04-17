@@ -105,7 +105,7 @@ public class Fighter extends PlayerCharacter {
     public void shield() {
 
         armorValue = 0;
-        
+
         int defense;
         int armorValue = 99999;
         String abilityName = "Shield";

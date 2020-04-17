@@ -73,18 +73,13 @@ public class GamePanel extends JPanel {
             }
         }
         /*
-            Needs to be automated w/ a method
+        For Creating Units
          */
-        try {
-            Image myImage = ImageIO.read(getClass().getResource("Assets/AdventurerOne.PNG"));
-            myImage = myImage.getScaledInstance(25, 25,  java.awt.Image.SCALE_SMOOTH ) ;
-            board[4][4].setIcon(new ImageIcon(myImage));
-            gameModel.createPiece(4, 4, 2, 1, "Hero");
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
+        createUnit("Assets/Priest.PNG", 4, 4, 2, 1, "Priest", 1);
+        createUnit("Assets/Mage.PNG", 5, 3, 2, 1, "Mage", 1);
+        createUnit("Assets/Goblin.PNG", 0, 0, 3, 1, "Goblin1", -1);
         /*
-            This method!
+            For Creating Units
          */
         add(boardPanel, BorderLayout.WEST);
         //Size of the board. Buttons fill it
@@ -105,6 +100,17 @@ public class GamePanel extends JPanel {
 
     private void setBackGroundColor(int r, int c) {
             board[r][c].setBackground(Color.BLACK);
+    }
+
+    public void createUnit(String picture, int rowSpot, int colSpot, int moveSpeed, int attackRange, String name, int isAlly){
+        try {
+            Image myImage = ImageIO.read(getClass().getResource(picture));
+            myImage = myImage.getScaledInstance(25, 25,  java.awt.Image.SCALE_SMOOTH ) ;
+            board[rowSpot][colSpot].setIcon(new ImageIcon(myImage));
+            gameModel.createPiece(rowSpot, colSpot, moveSpeed, attackRange, name, isAlly);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 
     /*
@@ -149,19 +155,23 @@ public class GamePanel extends JPanel {
                 for (int c = 0; c < sizeCol; c++) {
                     if (board[r][c] == event.getSource()) {
                         board[r][c].setBackground(Color.GREEN);
-                        spotClicked = true;
-                        rowClicked = r;
-                        colClicked = c;
-                        //Should only be able to move heroes
-                        if(gameModel.canMovePiece(lastRowClicked, lastColClicked, r, c)){
-                            board[r][c].setIcon(board[lastRowClicked][lastColClicked].getIcon());
-                            board[lastRowClicked][lastColClicked].setIcon(null);
-                            gameModel.movePiece(lastRowClicked, lastColClicked, r, c);
-                            //This is set up like this so you ahve to reclick a hero to be able to move them again
-                            spotClicked = false;
-                        }else {
+                            spotClicked = true;
+                            rowClicked = r;
+                            colClicked = c;
+                            //Should only be able to move heroes
+                            if (gameModel.canMovePiece(lastRowClicked, lastColClicked, r, c)) {
+                                board[r][c].setIcon(board[lastRowClicked][lastColClicked].getIcon());
+                                board[lastRowClicked][lastColClicked].setIcon(null);
+                                gameModel.movePiece(lastRowClicked, lastColClicked, r, c);
+                                //This is set up like this so you have to reclick a hero to be able to move them again
+                                spotClicked = false;
+                            }
+                            else {
                             lastRowClicked = r;
                             lastColClicked = c;
+
+                        }if (gameModel.isAlly(r, c) == -1){
+                            board[r][c].setBackground(Color.red);
                         }
                     }else {
                         setBackGroundColor(r, c);
@@ -176,8 +186,16 @@ public class GamePanel extends JPanel {
         private void lookForMovement(int fromRow, int fromCol){
             for(int r = 0; r < sizeRow; r++){
                 for (int c = 0; c < sizeCol; c++){
-                    if(gameModel.canMovePiece(fromRow, fromCol, r, c)){
-                        board[r][c].setBackground(Color.BLUE);
+                    if(!(r == fromRow) || !(c == fromCol)) {
+                        if (gameModel.canMovePiece(fromRow, fromCol, r, c)) {
+                            board[r][c].setBackground(Color.BLUE);
+                        }
+                        if (gameModel.isAlly(r, c) == 1) {
+                            board[r][c].setBackground(Color.YELLOW);
+                        }
+                        if (gameModel.isAlly(r, c) == -1) {
+                            board[r][c].setBackground(Color.RED);
+                        }
                     }
                 }
             }

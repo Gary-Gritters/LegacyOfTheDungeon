@@ -55,6 +55,7 @@ public class GameNoGUI {
      *********************************************/
 	private void choice() 
 	{
+		System.out.println("____________________________________________________________________________");
 		System.out.println("\nWhat would you like"
 				+ " to do?");
 		System.out.println("\nOptions in this "
@@ -63,7 +64,7 @@ public class GameNoGUI {
 				+ "for quit.");
 		System.out.println("\nTo move your character, "
 				+ "type one of the following:");
-		System.out.println("n,s,e, or w");
+		System.out.println("N, S, E, or W");
 		
 		char input = scan.next().charAt(0);
 		//when the player inputs a command, call 
@@ -82,6 +83,9 @@ public class GameNoGUI {
 	{
 		//use a switch case to check what command
 		//will be called
+		String makeLowerCase = "" + c;
+		makeLowerCase.toLowerCase();
+		c = makeLowerCase.toCharArray()[0];
 		switch(c) {
 		case 'h':
 			helpMessage();

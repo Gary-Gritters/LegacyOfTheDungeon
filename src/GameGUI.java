@@ -10,7 +10,7 @@ public class GameGUI {
         frame.getContentPane().add(panel);
 
         frame.setResizable(true);
-        frame.setPreferredSize(new Dimension(800, 637));
+        frame.setPreferredSize(new Dimension(800, 800));
         frame.pack();
         frame.setVisible(true);
     }
