@@ -9,15 +9,10 @@ import java.util.Scanner;
  ***************************************************/
 public class GameNoGUI {
 	
-	/************************************************
-     * The scanner which will hold the user's
-     * commands.
-     */
+    //The scanner which will hold the user's commands.
 	private Scanner scan = new Scanner(System.in);
 	
-	/************************************************
-     * Initial definition of the map class.
-     */
+    //Initial definition of the map class.
 	private Map m;
 	
 	/*********************************************
@@ -153,7 +148,8 @@ public class GameNoGUI {
 			m.startGame();
 		}
 		
-		System.out.println("\n\nYour new position is: " + m.getPlayerPos());
+		System.out.println("\n\nYour new position is: "
+		+ m.getPlayerPos());
 		//print board after moving
 		m.printBoard();
 		//go back to choice
