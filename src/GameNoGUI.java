@@ -118,13 +118,24 @@ public class GameNoGUI {
 	{
 		System.out.println("This feature "
 				+ "is currently being implemented.");
+		System.out.println("\n\nYour new position is: "
+				+ m.getPlayerPos());
+		m.printBoard();
+		choice();
 
 	}
-
-	private void helpMessage() {
+	
+	/*********************************************
+     * This displays a help message.
+     *********************************************/
+	private void helpMessage() 
+	{
 		System.out.println("This feature is "
 				+ "currently being implsemented.");
-
+		System.out.println("\n\nYour new position is: "
+				+ m.getPlayerPos());
+		m.printBoard();
+		choice();
 	}
 
 	/*********************************************
