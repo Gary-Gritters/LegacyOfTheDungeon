@@ -1,4 +1,4 @@
-package PlayerCharacter;
+
 
 /***********************************************
  * This is the Rogue class, which specializes in stealing
@@ -8,7 +8,7 @@ package PlayerCharacter;
  * @author Matt Hendrick
  ***********************************************/
 
-public class Rogue extends PlayerCharacter{
+public class Rogue extends PlayerCharacter {
 
     /*************************************************
      * This is the initial stat chart for a new Rogue.
@@ -25,7 +25,7 @@ public class Rogue extends PlayerCharacter{
      * @param next
      * @param gold
      *************************************************/
-    private Rogue(String name, int str, int dex, int con, int mind,
+    public Rogue(String name, int str, int dex, int con, int mind,
                     int hp, int mp, int lv, int exp, int next, int gold) {
         super(name, str, dex, con, mind, hp, mp, lv, exp, next, gold);
 
@@ -48,7 +48,7 @@ public class Rogue extends PlayerCharacter{
      * classes, the Rogue grants passive party bonuses at higher levels,
      * making it a good idea to keep one in your party.
      **************************************************/
-    private levelUp() {
+    public void levelUp() {
 
         level++;
         strength += 2;
@@ -88,7 +88,7 @@ public class Rogue extends PlayerCharacter{
      * Focus Strike, the delay is before the backstab, though the
      * Rogue is also free from targeted effects during the hiding phase.
      ************************************************/
-    private void hide() {
+    public void hide() {
         int backstab = (strength + weaponDamage) * 2;
         //Remove this character from battle for one turn
         boolean isHidden = true;

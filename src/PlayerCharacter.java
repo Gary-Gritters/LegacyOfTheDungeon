@@ -1,4 +1,3 @@
-package PlayerCharacter;
 import java.util.Random;
 /**********************************************************
  * This class will detail the basic framework of a character.
@@ -21,6 +20,9 @@ abstract public class PlayerCharacter {
     protected int experience;
     protected int nextLevel;
     protected int currency;
+    protected int weaponDamage;
+    protected int damage;
+    protected int armorValue;
 
     /***********************************************
      * Acts as the basic constructor for a character and will

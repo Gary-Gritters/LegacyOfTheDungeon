@@ -1,4 +1,3 @@
-package PlayerCharacter;
 
 /***************************************************
  * This guy hits things really hard.  He also protects others
@@ -23,7 +22,7 @@ public class Fighter extends PlayerCharacter {
      * @param next
      * @param gold
      */
-    private Fighter(String name, int str, int dex, int con, int mind,
+    public Fighter(String name, int str, int dex, int con, int mind,
                     int hp, int mp, int lv, int exp, int next, int gold) {
         super(name, str, dex, con, mind, hp, mp, lv, exp, next, gold);
 
@@ -38,6 +37,8 @@ public class Fighter extends PlayerCharacter {
         exp = 0;
         next = 1000;
         gold = 0;
+        weaponDamage = 0;
+        armorValue = 0;
     }
 
     /*********************************************
@@ -82,8 +83,9 @@ public class Fighter extends PlayerCharacter {
      ********************************************/
     public void focusStrike() {
         boolean isActive = true;
+
         int damage;
-        int weaponDamage; //Tie this to weapon
+        int weaponDamage = 999999; //Tie this to weapon
         String abilityName = "Focus Strike";
         if (isActive == true) {
             damage = (strength + weaponDamage) * 2;
@@ -101,8 +103,11 @@ public class Fighter extends PlayerCharacter {
      * the next turn
      ********************************************/
     public void shield() {
+
+        armorValue = 0;
+        
         int defense;
-        int armorValue;
+        int armorValue = 99999;
         String abilityName = "Shield";
         defense = (constitution + armorValue) * 2;
     }

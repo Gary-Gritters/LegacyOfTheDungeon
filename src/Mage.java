@@ -1,5 +1,3 @@
-package PlayerCharacter;
-
 import java.util.Random;
 
 /******************************************************
@@ -48,7 +46,7 @@ public class Mage extends PlayerCharacter {
      * This is the level up chart that details how the mage grows
      * every level.
      ****************************************************/
-    private levelUp() {
+    public void levelUp() {
 
         level++;
         strength += 1;
@@ -85,7 +83,7 @@ public class Mage extends PlayerCharacter {
      * useless at first level.  Will still have to be babysat by
      * melee classes for the early levels.
      ***********************************************/
-    private void spark() {
+    public void spark() {
         int damage;
         Random random = new Random();
         damage = random.nextInt(6) + 1;
@@ -100,7 +98,7 @@ public class Mage extends PlayerCharacter {
     /**********************************************
      * Essentially a more advanced version of Spark
      **********************************************/
-    private void bolt() {
+    public void bolt() {
         int damage;
         Random random = new Random();
         damage = random.nextInt(6) + 7;
@@ -118,7 +116,7 @@ public class Mage extends PlayerCharacter {
      * monsters at once
      *
      *************************************************/
-    private void fireball() {
+    public void fireball() {
         int damage;
         Random random = new Random();
         damage = random.nextInt(6) + 7;
@@ -136,7 +134,7 @@ public class Mage extends PlayerCharacter {
      * This does have a chance to work on bosses, though they
      * will have an additional chance to resist it.
      ***********************************************/
-    private void paralyze() {
+    public void paralyze() {
         //This will set the target enemy to have their turn skipped
         //until condition is cured
     }
@@ -145,7 +143,7 @@ public class Mage extends PlayerCharacter {
      * This will inflict a high amount of single target damage,
      * but is also expensive to cast.
      ***********************************************/
-    private void doom() {
+    public void doom() {
         int damage;
         Random random = new Random();
         damage = random.nextInt(20) + 20;

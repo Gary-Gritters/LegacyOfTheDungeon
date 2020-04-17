@@ -1,5 +1,3 @@
-package PlayerCharacter;
-
 import java.util.Random;
 
 /***********************************************************
@@ -28,7 +26,7 @@ public class Priest extends PlayerCharacter {
      * @param next
      * @param gold
      *********************************************************/
-    private Priest(String name, int str, int dex, int con, int mind,
+    public Priest(String name, int str, int dex, int con, int mind,
                     int hp, int mp, int lv, int exp, int next, int gold) {
         super(name, str, dex, con, mind, hp, mp, lv, exp, next, gold);
 
@@ -51,7 +49,7 @@ public class Priest extends PlayerCharacter {
      * This is how the character will grow once they reach the
      * proper amount of experience points.
      ***************************************************/
-    private levelUp() {
+    public void levelUp() {
 
         level++;
         strength += 1;
@@ -87,7 +85,7 @@ public class Priest extends PlayerCharacter {
     /*******************************************
      * Basic starter spell that the priest can use at level 1
      ********************************************/
-    private void firstAid() {
+    public void firstAid() {
         int recover;
         Random random = new Random();
         recover = random.nextInt(6) + 1;
@@ -104,7 +102,7 @@ public class Priest extends PlayerCharacter {
      * It is designed to cost more, but will cure the character of
      * more damage than the first level spell.
      **************************************************/
-    private void cureLight() {
+    public void cureLight() {
         int recover;
         Random random = new Random();
         recover = random.nextInt(6) + 6;
@@ -121,7 +119,7 @@ public class Priest extends PlayerCharacter {
      * the priest will need their spells to cure similar amounts of
      * damage.
      ****************************************************/
-    private void cureModerate() {
+    public void cureModerate() {
         int recover;
         Random random = new Random();
         recover = random.nextInt(12) + 12;
@@ -138,7 +136,7 @@ public class Priest extends PlayerCharacter {
      * This will help free characters afflicted by such conditions.
      *
      ********************************************************/
-    private void cureParalysis() {
+    public void cureParalysis() {
         //Not yet implemented
     }
 
@@ -146,7 +144,7 @@ public class Priest extends PlayerCharacter {
      * As enemies start to learn magic that can hit more than one player,
      * the priest will need spells that can assist multiple allies.
      ******************************************************/
-    private void cureAllModerate() {
+    public void cureAllModerate() {
         //Make this cycle through all active characters on the field
         int recover;
         Random random = new Random();
