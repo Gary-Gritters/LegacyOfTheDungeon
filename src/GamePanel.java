@@ -31,8 +31,8 @@ public class GamePanel extends JPanel {
     private buttonListener buttonListener;
 
     public GamePanel() {
-        sizeRow = 17;
-        sizeCol = 17;
+        sizeRow = 8;
+        sizeCol = 8;
         model = new GameModel(sizeRow, sizeCol);
         /*
          * SHOULD BECOME ALLOCATED DEPENDING ON SIZE OF MAP
@@ -47,12 +47,12 @@ public class GamePanel extends JPanel {
         gameModel = new GameModel(sizeRow, sizeCol);
         //createIcons();
 
-        JPanel boardpanel = new JPanel();
-        JPanel buttonpanel = new JPanel();
+        JPanel boardPanel = new JPanel();
+        JPanel buttonPanel = new JPanel();
         /*
          * Again, model.sizeRow(), model.sizeCol()
          */
-        boardpanel.setLayout(new GridLayout(sizeRow, sizeCol, 1, 1));
+        boardPanel.setLayout(new GridLayout(sizeRow, sizeCol, 1, 1));
 
         /*
          * Creating images for the buttons.
@@ -68,7 +68,7 @@ public class GamePanel extends JPanel {
                     board[r][c].addActionListener(listener);
                 }
                 board[r][c].setPreferredSize(new Dimension(30, 30));
-                boardpanel.add(board[r][c]);
+                boardPanel.add(board[r][c]);
                 board[r][c].setBackground(Color.black);
             }
         }
@@ -86,19 +86,19 @@ public class GamePanel extends JPanel {
         /*
             This method!
          */
-        add(boardpanel, BorderLayout.WEST);
+        add(boardPanel, BorderLayout.WEST);
         //Size of the board. Buttons fill it
-        boardpanel.setPreferredSize(new Dimension(sizeRow*40, sizeCol*40));
-        add(buttonpanel, BorderLayout.SOUTH);
+        boardPanel.setPreferredSize(new Dimension(sizeRow*40, sizeCol*40));
+        add(buttonPanel, BorderLayout.SOUTH);
 
         characterSheet = new JButton("Character");
         mapSystem = new JButton("Map");
-        BoxLayout boxLayout1 = new BoxLayout(buttonpanel, BoxLayout.Y_AXIS);
-        buttonpanel.setLayout(boxLayout1);
+        BoxLayout boxLayout1 = new BoxLayout(buttonPanel, BoxLayout.Y_AXIS);
+        buttonPanel.setLayout(boxLayout1);
         characterSheet.addActionListener(buttonListener);
         mapSystem.addActionListener(buttonListener);
-        buttonpanel.add(characterSheet);
-        buttonpanel.add(mapSystem);
+        buttonPanel.add(characterSheet);
+        buttonPanel.add(mapSystem);
         firstTurnFlag = true;
 
     }
