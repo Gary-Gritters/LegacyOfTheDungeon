@@ -1,43 +1,52 @@
 import java.util.Random;
 
+/***************************************************
+ * This class creates and manages the map within 
+ * the non-GUI game.
+ *
+ * @author Jarett Allie
+ ***************************************************/
 public class Map {
 	
+    //The scanner which will hold the user's commands.
 	private Random rand = new Random();
 	
-	//board variables
-	private int rows = rand.nextInt(5 + 1) + 5;
-	private int columns = rand.nextInt(5 + 1) + 5;
+	//create a random number of rows from 5 to 11
+	private int rows = rand.nextInt(5) + 5;
+	//create a random number of columns from 5 to 11
+	private int columns = rand.nextInt(5) + 5;
+	
+	//define the 2d array to hold the rows and 
+	//columns
 	private char twoD[][]=new char[rows][columns];
 	
-	//used to track player position
+	//used to track player's position
 	private int playerX;
 	private int playerY;
+	//temp variables to store old moves
 	private int tempPlayerX;
 	private int tempPlayerY;
+	
+	//boolean to check if the player has 
+	//reached the exit
 	private boolean exitCheck;
 	
-	
-	public boolean checkFloorComplete() {
+	/****************************************
+     * This checks if the floor is completed.
+     * 
+     * @return exitCheck boolean.
+     *********************************************/
+	public boolean checkFloorComplete() 
+	{
 		return exitCheck;
 	}
 	
-	
-	//return current room type
-	public char checkRoom() {
-		//finish...
-		return 'y';
-	}
 
-	private void exitRoom() {
-		System.out.println("\nCongrats! You made it to the next floor!\n");
-		exitCheck = true;
-//		resetBoard();
-		
-	}
-
-	//fill and initialize the board at the start
-	private void fillBoard() {
-		
+	/*********************************************
+    * This fills the board to instantiate it.
+    *********************************************/
+	private void fillBoard() 
+	{
 		for(int i=0; i<rows;i++)
 		{            
 	        for(int j=0; j<columns;j++)
@@ -47,34 +56,54 @@ public class Map {
 		}
 	}
 	
-	//used to get the position of player (x,y)
-	protected String getPlayerPos() {
+	/*********************************************
+     * This returns the player's position as a
+     * string in (x,y) order.
+     * 
+     * @return String with the position of player. 
+     *********************************************/
+	protected String getPlayerPos() 
+	{
 		int x = playerX;
 		int y = playerY;
-		String pos = String.valueOf(y + 1) + ", " + String.valueOf(x + 1) ;
-		
+		//create a string of player's position
+		String pos = String.valueOf(y + 1) + ", "
+		+ String.valueOf(x + 1) ;
 		return(pos);
 	}
 	
-	
-	//array check to make sure player does not move out of bounds
-	//faster than a try-catch
-	private boolean isMoveValid(){
-		if((playerX > rows - 1 || playerX < 0 || playerY > columns - 1 || playerY < 0 ))
+	/*********************************************
+     * This is an array out of bounds check to make
+     * sure the player doesn't move out of bounds.
+     * 
+     * @return if a move is valid, true.
+     *********************************************/
+	private boolean isMoveValid()
+	{
+		//check all four directions
+		if((playerX > rows - 1 || playerX < 0 || 
+				playerY > columns - 1 || playerY < 0 ))
 			return false;
 		else
 			return true;
 	}
 
 
-	//this function moves the player
-	protected void move(char choice) {
-		//temp variables to hold the original player position
+	/*********************************************
+     * This moves the player based on the command
+     * passed from GameNoGUI.
+     * 
+     * @param choice the direction to move.
+     *********************************************/
+	protected void move(char choice) 
+	{
+		//temp variables to hold the original player 
+		//position
 		//this is for when an invalid move is made
 		tempPlayerY = playerY;
 		tempPlayerX = playerX;
-
-		//switch statement activating a movement for all four directions
+		//switch statement activating a movement 
+		//for all four directions
 		switch(choice) {
 		case 'n':
 			playerX--;
@@ -89,12 +118,15 @@ public class Map {
 			playerX++;
 			break;	
 		default:
-			System.out.println("Sorry! Your movement was invalid");
+			System.out.println("Sorry! Your "
+					+ "movement was invalid");
 		}
 		
 		//make sure move is valid
 		if(isMoveValid())
-			//if move is valid update board and any actions that take place in next room
+			//if move is valid update board
+			//and any actions that take 
+			//place in next room
 			updateCharPos();
 		else {
 			//if not valid move, restore position
@@ -103,16 +135,19 @@ public class Map {
 		}
 	}
 	
-	//print the board and map key
-	protected void printBoard() {
+	/*********************************************
+     * This prints the game board and map key.
+     *********************************************/
+	protected void printBoard() 
+	{
 		System.out.println("\n	Map Key:");
 		System.out.println("	P = Player");
 		System.out.println("	T = Treasure");
-		System.out.println("	X = Road block or Possible Enemy Encounter");
+		System.out.println("	X = Road block "
+				+ "or Possible Enemy Encounter");
 		System.out.println("	V = Visited\n");
 		System.out.println("	E = Exit\n");
-
-		
+		//print the board.
 		for(char[] x:twoD){
             for(char y:x){
             System.out.print(y+"  ");
@@ -121,14 +156,21 @@ public class Map {
         }
 	}
 	
-	//set exit on board to next map
-	//reaching this room will "reset" the map to be a new world/floor
-	private void setExit() {
+	/*********************************************
+     * This sets where the exit will be on the map.
+     * Reaching this room will "reset" the map to
+     * be a new floor.
+     *********************************************/
+	private void setExit() 
+	{
 		int i = 0;
+		//loops through the board to randomly place
+		//the exit
 		while(i ==0) {
 			Random rand1 = new Random(); 
 			int r = rand1.nextInt(rows);
 			int c = rand1.nextInt(columns);
+			//make sure it is an empty room
 			if(twoD[r][c] == 'x') {
 				twoD[r][c]='E';
 				i++;
@@ -136,41 +178,49 @@ public class Map {
 		}		
 	}
 	
-	//set initial player position
-	private void setPlayer() {
+	/*********************************************
+     * This sets the player's position.
+     *********************************************/
+	private void setPlayer() 
+	{
 		int i = 0;
-		
-		//randomly select where the player will start
+		//while loop to randomly select where 
+		//the player will start
 		while(i == 0) {
 			Random rand = new Random(); 
-			
 			int r = rand.nextInt(rows);
 			int c = rand.nextInt(columns);
-				
+			//make sure the room is empty where
+			//it will be placed
 			if(twoD[r][c] == 'x') {
 				twoD[r][c]='P';
 				playerX = r;
 				playerY = c;
 				i++;
 			}	
-			
 		}		
 	}
 	
 	
-	//set a spot for treasure to spawn
-	private void setTreasure() {
+	/*********************************************
+     * This sets where treasure will be set on the
+     * floor.
+     *********************************************/
+	private void setTreasure() 
+	{
 		int i = 0;
 		Random rand1 = new Random(); 
-		//currently it is set to 1-3 treasure rooms per map
+		//currently it is set to 1-3 treasure rooms
+		//per map
 		int amt = rand1.nextInt(2) + 1;
+		//while loop to randomly select where 
+		//the player will start
 		while(i < amt) {
-			
 			for(int n = 0; n < amt ;n++) {
-				
 				int r = rand1.nextInt(rows);
 				int c = rand1.nextInt(columns);
-				
+				//make sure room is empty where
+				//treasure will be put.
 				if(twoD[r][c] == 'x') {
 					twoD[r][c]='T';
 					i++;
@@ -180,38 +230,51 @@ public class Map {
 	}
 
 
-	//starts a new game 
-	public void startGame() {
+	/*********************************************
+     * This starts the game and instantiates the board.
+     * This also sets treasure, the player, and the
+     * exit.
+     *********************************************/
+	protected void startGame() 
+	{
 		exitCheck = false;
 		this.fillBoard();
 		this.setPlayer();
 		this.setExit();
 		this.setTreasure();
-		//this.printBoard();
-		//System.out.println("\n" + (this.getPlayerPos()));
-	
 	}
 
-
-	private void treasureRoom() {
-		System.out.println("\nCongrats! You found a treasure!\n");
-		//name treasure
+	/*********************************************
+     * This is ran when treasure is found.
+     *********************************************/
+	private void treasureRoom() 
+	{
+		System.out.println("\nCongrats! You found"
+				+ " a treasure!\n");
+		//call treasure class
 		//add treasure to inventory
 	}
 
-
-	//updates the players position after a move
-	//also will check if player reaches a treasure room,enemy room, exit, etc.
-	private void updateCharPos() {
+	/*********************************************
+     * This updates the characters position after
+     * a move. This also will check if a player
+     * reaches a treasure room, enemy room, or 
+     * exit room.
+     *********************************************/
+	private void updateCharPos() 
+	{
 		//get room type that will be moved to
 		char room = twoD[playerX][playerY];
-		//set the old room moved from to v for visited
+		//set the old room moved from to v for 
+		//it to be marked as visited
 		twoD[tempPlayerX][tempPlayerY]='V';
 		twoD[playerX][playerY]='P';
-		//ADD in actions for each type of room encounter
+		//switch statement to check room type
 		switch(room) {
 		case 'E':
-			exitRoom();
+			System.out.println("\nCongrats! You "
+					+ "made it to the next floor!\n");
+			exitCheck = true;			
 			break;
 		case 'T':
 			treasureRoom();
@@ -219,9 +282,6 @@ public class Map {
 		default:
 			break;
 		}
-		
 	}
-
-
 	
 }
