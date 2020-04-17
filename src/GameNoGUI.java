@@ -1,46 +1,92 @@
 import java.util.Scanner;
 
+/***************************************************
+ * This class runs an instance of the game with no
+ * GUI. Everything is text based as an output from 
+ * the console.
+ *
+ * @author Jarett Allie
+ ***************************************************/
 public class GameNoGUI {
-	//DEFINE vars
+	
+	/************************************************
+     * The scanner which will hold the user's
+     * commands.
+     */
 	private Scanner scan = new Scanner(System.in);
+	
+	/************************************************
+     * Initial definition of the map class.
+     */
 	private Map m;
 	
-	
-	public static void main(String[] args) {
-		//start new game instance
+	/*********************************************
+     * This starts a new game and then calls the 
+     * choice() class which manages the game.
+     *********************************************/
+	public static void main(String[] args) 
+	{
+		//create new game instance
 		GameNoGUI game = new GameNoGUI();
+		//setup a new game
 		game.startGame();
+		//call choice() which is used to play the
+		//game
 		game.choice();
 	}
 
-	//displayed once
-	private static void startMessage() {
-		System.out.println("Welcome to Legacy Of the Dungeon\n");
-		System.out.println("Your journey will start soon after you create your character!");
-		//insert creation
-		System.out.println("\nFeel free to type \"h\" for help at any time.\n");
-		//enter description of commands
-		//command "help" will display above
-		//create method calls for each command
-		System.out.println("This is the map where you will be starting your journey!");
-		
-		
+	 /*********************************************
+     * This prints a message at the start of the
+     * game.
+     *********************************************/
+	private static void startMessage() 
+	{
+		System.out.println("Welcome to Legacy Of "
+				+ "the Dungeon\n");
+		System.out.println("Your journey will start"
+				+ " soon after you create your "
+				+ "character!");
+		System.out.println("\nFeel free to type \"h\""
+				+ " for help at any time.\n");
+		System.out.println("This is the map where"
+				+ " you will be starting your "
+				+ "journey!");
 	}
 	
-	//this method responds to what the player wants to do
-	private void choice() {
-		//check game is still valid/active
-		System.out.println("\nWhat would you like to do?");
-		System.out.println("\nOptions in this release include \"h\" for help, \"i\" for inventory, and \"q\" for quit.");
-		System.out.println("\nTo move your character, type one of the following:");
-		System.out.println("N,S,E, or W");
+	/*********************************************
+     * This methods gets the users input for what 
+     * they want to do and then checks what
+     * command it is.
+     *********************************************/
+	private void choice() 
+	{
+		System.out.println("\nWhat would you like"
+				+ " to do?");
+		System.out.println("\nOptions in this "
+				+ "release include \"h\" for help, "
+				+ "\"i\" for inventory, and \"q\" "
+				+ "for quit.");
+		System.out.println("\nTo move your character, "
+				+ "type one of the following:");
+		System.out.println("n,s,e, or w");
+		
 		char input = scan.next().charAt(0);
-		//when the player moves call move function
+		//when the player inputs a command, call 
+		//commandCheck to check it
 		commandCheck(input);
 		
 	}
 	
-	private void commandCheck(char c) {
+	/*********************************************
+     * This checks what command was input by the
+     * user.
+     * 
+     * @param The command's character.
+     *********************************************/
+	private void commandCheck(char c) 
+	{
+		//use a switch case to check what command
+		//will be called
 		switch(c) {
 		case 'h':
 			helpMessage();
@@ -49,53 +95,84 @@ public class GameNoGUI {
 			openInventory();
 			break;
 		case 'q':
-			System.out.println("Game closed successfully.");
-			System.out.println("Thank you for playing!");
+			System.out.println("Game closed "
+					+ "successfully.");
+			System.out.println("Thank you for"
+					+ " playing!");
 			System.exit(0);
 			break;
 		default:
-			if(c == 'n' || c == 'w' || c == 'e' || c == 's')
+			//check to see if there was a movement
+			//the player wanted to do
+			if(c == 'n' || c == 'w' || c == 'e' 
+			|| c == 's')
 				move(c);
+			else
+				//if no commands are valid keep
+				//scanning until one is
+				commandCheck(scan.next().charAt(0));
 			break;
 		}
 	}
 	
 	
+	/*********************************************
+     * This opens the inventory for the player.
+     *********************************************/
+	private void openInventory() 
+	{
+		System.out.println("This feature "
+				+ "is currently being implemented.");
 
-	private void openInventory() {
-		
 	}
 
 	private void helpMessage() {
-		
+		System.out.println("This feature is "
+				+ "currently being implsemented.");
+
 	}
 
-	//calls the move function in the map class
-	private void move(char c) {
-		//moves from the map class
+	/*********************************************
+     * This moves the character's position in
+     * Map.java. Then it checks if a new map has
+     * to be created when the character reaches
+     * the exit.
+     * 
+     * @param The command's character.
+     *********************************************/
+	private void move(char c) 
+	{
+		//move character on the map
 		m.move(c);
-		
+		//check if the character has reached the exit
 		if(m.checkFloorComplete()) {
+			//if character reached exit, create new
+			//map
 			m = new Map();
-			//GameMain game = new GameMain();
+			//restarts map
 			m.startGame();
-			//game.choice();
 		}
 		
-		System.out.println("Your new position is: " + m.getPlayerPos());
+		System.out.println("\n\nYour new position is: " + m.getPlayerPos());
 		//print board after moving
 		m.printBoard();
 		//go back to choice
 		choice();
 	}
 	
-	//starts the game
-	private void startGame() {
+	/*********************************************
+     * This generates everything needed when
+     * starting a new game.
+     *********************************************/
+	private void startGame() 
+	{
+		//create new instance of map
 		m = new Map();
 		//display first message
 		startMessage();
 		//start new instance of the map
 		m.startGame();
+		//print map
 		m.printBoard();
 
 	}
