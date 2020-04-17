@@ -74,6 +74,13 @@ abstract public class PlayerCharacter {
         }
     }
 
+    /*************************************************
+     * This is the general skeleton of what an ability would look
+     * like.  Since most of the abilities manipulate damage and
+     * defense in some way, those two parameters are included in
+     * the general method.  All abilities have a required level and
+     * a name.
+     ***************************************************/
     public void abilityType() {
 
         int requiredLevel;
@@ -81,75 +88,163 @@ abstract public class PlayerCharacter {
         int damage;
         int defense;
     }
-    
+
+    /*************************************************
+     *
+     * @param name Sets the character's name after creation
+     **************************************************/
     public void setCharName(String name) {
         charName = name;
     }
 
+    /************************************************
+     *
+     * @return This will call the character's name when needed
+     *************************************************/
     public String getCharName() {
         return charName;
     }
 
+    /************************************************
+     *
+     * @param str Sets the character's strength to the current
+     *            value.  May be manipulated by abilities also.
+     ************************************************/
     public void setCharStr(int str) {
         strength = str;
     }
 
+    /*************************************************
+     *
+     * @return Will call the strength value when needed, often
+     *         during battles.
+     **************************************************/
     public int getCharStr() {
         return strength;
     }
+
+    /*************************************************
+     *
+     * @param dex Sets the character's dexterity to the current
+     *            value.  May be manipulated by abilities as well.
+     *************************************************/
 
     public void setCharDex(int dex) {
         dexterity = dex;
     }
 
+    /*************************************************
+     *
+     * @return Will call the dexterity value when needed, often
+     *         during battles.
+     **************************************************/
     public int getCharDex() {
         return dexterity;
     }
 
+    /**************************************************
+     *
+     * @param con Sets the character's constitution to the current
+     *            value.  May be manipulated by abilities as well.
+     **************************************************/
     public void setCharCon(int con) {
         constitution = con;
     }
 
+    /*************************************************
+     *
+     * @return Will call the constitution value when needed, often
+     *         during battles and when calculating HP.
+     **************************************************/
     public int getCharCon() {
         return constitution;
     }
 
+    /*****************************************************
+     *
+     * @param mind Sets the character's intelligence to the current
+     *             value.
+     *****************************************************/
     public void setCharMind(int mind) {
         intelligence = mind;
     }
 
+    /*************************************************
+     *
+     * @return Will call the intelligence value when needed, often
+     *         during battles when casting magic.
+     **************************************************/
     public int getCharMind() {
         return intelligence;
     }
 
+    /*************************************************
+     *
+     * @param hp Sets the character's health to the current value,
+     *           though never in the negatives.
+     *************************************************/
     public void setCharHealth(int hp) {
         health = hp;
     }
 
+    /*************************************************
+     *
+     * @return Will call the HP value when needed, often
+     *         during battles or when taking curative items.
+     **************************************************/
     public int getCharHealth() {
         return health;
     }
 
+    /**************************************************
+     *
+     * @param mp Sets the character's magic to the current value
+     *           though never in the negatives.
+     */
     public void setCharMagic(int mp) {
         magic = mp;
     }
 
+    /*************************************************
+     *
+     * @return Will call the MP value when needed, often
+     *         during battles or when taking items to recover it.
+     **************************************************/
     public int getCharMagic() {
         return magic;
     }
 
+    /*************************************************
+     *
+     * @param exp Adds the enemy's experience value to the player's
+     *            total
+     *************************************************/
     public void setExperience(int exp) {
         experience = exp;
     }
 
+    /*************************************************
+     *
+     * @return Will call the experience value when needed, often
+     *         after battles.
+     **************************************************/
     public int getExperience() {
         return experience;
     }
 
+    /***************************************************
+     *
+     * @param gold Adds and subtracts money when needed
+     **************************************************/
     public void setCurrency(int gold) {
         currency = gold;
     }
 
+    /*************************************************
+     *
+     * @return Will call the currency value when needed,
+     *         typically after a battle or when shopping
+     **************************************************/
     public int getCurrency() {
         return currency;
     }

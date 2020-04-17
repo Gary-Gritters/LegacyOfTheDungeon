@@ -74,16 +74,6 @@ public class Fighter extends PlayerCharacter {
 
     }
 
-    public void abilityType() {
-
-        int weaponDamage = 0;
-        int armorValue = 0;
-        int damage;
-        int defense;
-        int numTurns;
-        boolean isAvailable = true;
-    }
-
     /*********************************************
      * This ability is meant to hit a target hard, but leave
      * the fighter unable to act for a turn.  Strategically,
