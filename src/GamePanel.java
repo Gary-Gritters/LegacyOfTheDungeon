@@ -4,6 +4,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/***************************************************
+ * This class creates the GUI and sets up the info for it.
+ *
+ * @author Garett Gritters
+ ***************************************************/
+
+
 public class GamePanel extends JPanel {
     private JButton[][] board;
     private JButton characterSheet;

@@ -1,3 +1,11 @@
+
+/***************************************************
+ * This class runs the logic and of the units on the board, from which
+ * the panel will draw info in what to put on the gui.
+ *
+ * @author Garett Gritters
+ ***************************************************/
+
 public class GameModel {
 
     //This will be holding the logic for the game

@@ -1,3 +1,9 @@
+/***************************************************
+ * This class creates the unique pieces that occupy the game board.
+ *
+ * @author Garett Gritters
+ ***************************************************/
+
 public class GamePiece implements IGamePiece{
     private String myName;
     private String myPicture;

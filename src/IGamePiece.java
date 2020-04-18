@@ -1,3 +1,9 @@
+/***************************************************
+ * This is the interface for GamePiece
+ *
+ * @author Garett Gritters
+ ***************************************************/
+
 public interface IGamePiece {
     public void setMoveSpeed(int setMoveSpeed);
     public void takeDamage(int damage);
