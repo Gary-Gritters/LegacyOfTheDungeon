@@ -55,7 +55,9 @@ public class GameNoGUI {
      *********************************************/
 	private void choice() 
 	{
-		System.out.println("____________________________________________________________________________");
+		System.out.println("_______________________"
+				+ "_______________________________"
+				+ "______________________");
 		System.out.println("\nWhat would you like"
 				+ " to do?");
 		System.out.println("\nOptions in this "
@@ -83,10 +85,8 @@ public class GameNoGUI {
 	{
 		//use a switch case to check what command
 		//will be called
-		String makeLowerCase = "" + c;
-		makeLowerCase.toLowerCase();
-		c = makeLowerCase.toCharArray()[0];
-		switch(c) {
+		char c2 = Character.toLowerCase(c);
+		switch(c2) {
 		case 'h':
 			helpMessage();
 			break;
@@ -103,9 +103,9 @@ public class GameNoGUI {
 		default:
 			//check to see if there was a movement
 			//the player wanted to do
-			if(c == 'n' || c == 'w' || c == 'e' 
-			|| c == 's')
-				move(c);
+			if(c2 == 'n' || c2 == 'w' || c2 == 'e' 
+			|| c2 == 's')
+				move(c2);
 			else
 				//if no commands are valid keep
 				//scanning until one is
