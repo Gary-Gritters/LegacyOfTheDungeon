@@ -135,7 +135,7 @@ public class GameNoGUI {
 	private void helpMessage() 
 	{
 		System.out.println("This feature is "
-				+ "currently being implsemented.");
+				+ "currently being implemented.");
 		System.out.println("\n\nYour new position is: "
 				+ m.getPlayerPos());
 		m.printBoard();
