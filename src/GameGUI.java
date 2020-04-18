@@ -6,7 +6,7 @@ public class GameGUI {
         JFrame frame = new JFrame("Legacy of the Dungeon");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        GamePanel panel = new GamePanel();
+        GamePanel panel = new GamePanel(8, 8);
         frame.getContentPane().add(panel);
 
         frame.setResizable(true);
